@@ -1,6 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" >
 
-</ConstraintLayout>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="177dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:layout_marginLeft="108dp"
+        android:layout_marginTop="34dp"
+        android:layout_toRightOf="@id/addButton"
+        android:text="TextView" />
+
+    <ImageButton
+        android:id="@+id/imageView"
+        android:layout_width="167dp"
+        android:layout_height="148dp"
+        android:layout_below="@id/photoListView"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="54dp"
+        android:layout_toRightOf="@id/slideshowButton"
+        app:srcCompat="@android:drawable/alert_dark_frame" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/photoListView"
+        android:layout_marginTop="52dp"
+        android:text="Add" />
+
+    <Button
+        android:id="@+id/slideshowButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/photoListView"
+        android:layout_marginTop="306dp"
+        android:text="Slideshow" />
+
+    <Button
+        android:id="@+id/moveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/photoListView"
+        android:layout_marginTop="242dp"
+        android:text="Move" />
+
+    <Button
+        android:id="@+id/deletePButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/photoListView"
+        android:layout_marginTop="118dp"
+        android:text="Delete" />
+
+    <Button
+        android:id="@+id/tagButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/photoListView"
+        android:layout_marginTop="178dp"
+        android:text="Tag" />
+
+    <ListView
+        android:id="@+id/photoListView"
+        android:layout_width="match_parent"
+        android:layout_height="296dp"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentEnd="false"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

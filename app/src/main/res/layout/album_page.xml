@@ -1,90 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/openButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Albums"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
-
-    <ListView
-        android:id="@+id/albumListView"
-        android:layout_width="240dp"
-        android:layout_height="474dp"
-        android:layout_marginTop="42dp"
-        app:layout_constraintEnd_toStartOf="@+id/openButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="97dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="20dp"
-        android:text="Delete"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addButton"
-        app:layout_constraintTop_toBottomOf="@+id/albumListView"
-        app:layout_constraintVertical_bias="0.019" />
-
-    <Button
-        android:id="@+id/addButton"
-        android:layout_width="81dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="20dp"
-        android:text="Add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editButton"
-        app:layout_constraintTop_toBottomOf="@+id/albumListView"
-        app:layout_constraintVertical_bias="0.047" />
-
-    <Button
-        android:id="@+id/editButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="100dp"
-        android:text="Edit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/albumListView"
-        app:layout_constraintVertical_bias="0.028" />
+        android:layout_below="@id/deleteButton"
+        android:layout_marginLeft="73dp"
+        android:layout_marginTop="149dp"
+        android:layout_toRightOf="@id/searchButton"
+        android:text="Open" />
 
     <Button
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="176dp"
-        android:layout_marginEnd="32dp"
-        android:text="Search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/albumListView"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_below="@id/deleteButton"
+        android:layout_marginStart="-30dp"
+        android:layout_marginTop="149dp"
+        android:layout_toEndOf="@+id/photoListView"
+        android:text="Search" />
 
     <Button
-        android:id="@+id/openButton"
+        android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="47dp"
-        android:layout_marginEnd="36dp"
-        android:text="Open"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchButton"
-        app:layout_constraintVertical_bias="0.065" />
+        android:layout_below="@+id/albumListView"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/photoListView"
+        android:text="Delete" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/albumListView"
+        android:layout_marginStart="53dp"
+        android:layout_marginLeft="53dp"
+        android:layout_marginTop="17dp"
+        android:layout_toEndOf="@+id/deleteButton"
+        android:layout_toRightOf="@id/deleteButton"
+        android:text="Edit" />
+
+    <ListView
+        android:id="@+id/albumListView"
+        android:layout_width="match_parent"
+        android:layout_height="439dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="6dp" />
+
+    <Button
+        android:id="@+id/photoListView"
+        android:layout_width="97dp"
+        android:layout_height="46dp"
+        android:layout_below="@id/albumListView"
+        android:layout_marginTop="15dp"
+        android:text="Add" />
+
+</RelativeLayout>

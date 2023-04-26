@@ -1,6 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</ConstraintLayout>
+    <RadioButton
+        android:id="@+id/dateSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="280dp"
+        android:layout_marginBottom="620dp"
+        android:text="Date-search" />
+
+    <RadioButton
+        android:id="@+id/orButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="247dp"
+        android:layout_marginBottom="275dp"
+        android:text="OR" />
+
+    <RadioButton
+        android:id="@+id/andButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="275dp"
+        android:text="AND" />
+
+    <RadioButton
+        android:id="@+id/tagSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="621dp"
+        android:text="Tag-search" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="349dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="683dp"
+        android:text="Do you want to search by date OR by tags?" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="349dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="115dp"
+        android:text="Directions: if the AND / OR radio buttons arent' clicked, the user can search by only one key-value pair in the tag1 key and tag1 value boxes. Finally, after entering all data, press the search button" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="367dp"
+        android:layout_marginBottom="503dp"
+        android:text="From:" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="183dp"
+        android:layout_marginBottom="503dp"
+        android:text="To:" />
+
+    <EditText
+        android:id="@+id/startDate"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="224dp"
+        android:layout_marginBottom="489dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="MM/DD/YYYY" />
+
+    <EditText
+        android:id="@+id/tag1Key"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="227dp"
+        android:layout_marginBottom="344dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Tag1 key" />
+
+    <EditText
+        android:id="@+id/tag2Key"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="229dp"
+        android:layout_marginBottom="211dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Tag2 key" />
+
+    <EditText
+        android:id="@+id/tag1Value"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="345dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Tag1 value" />
+
+    <EditText
+        android:id="@+id/tag2Value"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="212dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Tag2 value" />
+
+    <EditText
+        android:id="@+id/endDate"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="489dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="MM/DD/YYYY" />
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="33dp"
+        android:text="Search" />
+
+</RelativeLayout>
