@@ -1,34 +1,54 @@
 package com.example.photosandroid;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
+import java.io.IOException;
+import java.text.ParseException;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button searchButton;
-    private Button openButton;
+    private Button searchButton, openButton, addButton, deleteButton, editButton;
+    private ListView albumListView;
+
+    private ArrayAdapter<Album> arrayAdapter;
+    public static User user;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
+        try {
+            MainActivity.user.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        if(user==null){
+            user = new User("Main");
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.album_page);
+        albumListView = findViewById(R.id.albumListView);
+        openButton = findViewById(R.id.openButton);
         searchButton=findViewById(R.id.searchButton);
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setContentView(R.layout.photo_page);
-            }
-        });
+        addButton = findViewById(R.id.addAlbumButton);
+        editButton = findViewById(R.id.editAlbumButton);
+        deleteButton = findViewById(R.id.deleteAlbumButton);
+
+        albumListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        albumListView.setSelection(0);
+        arrayAdapter = new ArrayAdapter<Album>(this,R.layout.album_page,user.getAllAlbums());
+        albumListView.setAdapter(arrayAdapter);
+
     }
 
 }

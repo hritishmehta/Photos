@@ -1,6 +1,14 @@
 package com.example.photosandroid;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 /**
  * @author Hritish Mehta
@@ -145,6 +153,27 @@ public class User implements Serializable {
     public void deleteAlbum(Album a){
         if(a!=null){
             albumList.remove(a);
+        }
+    }
+    public static void save() throws IOException {
+        ObjectOutputStream stream = null;
+        try{
+            stream = new ObjectOutputStream(new FileOutputStream("albums.dat"));
+            stream.writeObject(MainActivity.user);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        stream.close();
+    }
+    public static void load() throws IOException, ClassNotFoundException, ParseException {
+        File file = new File("albums.dat");
+
+        try{
+            ObjectInputStream inp = new ObjectInputStream(new FileInputStream("albums.dat"));
+            MainActivity.user = (User) inp.readObject();
+            inp.close();
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 

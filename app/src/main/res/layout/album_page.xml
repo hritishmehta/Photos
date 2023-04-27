@@ -10,7 +10,7 @@
         android:id="@+id/openButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/deleteButton"
+        android:layout_below="@id/deleteAlbumButton"
         android:layout_marginLeft="73dp"
         android:layout_marginTop="149dp"
         android:layout_toRightOf="@id/searchButton"
@@ -20,32 +20,32 @@
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/deleteButton"
+        android:layout_below="@id/deleteAlbumButton"
         android:layout_marginStart="-30dp"
         android:layout_marginTop="149dp"
-        android:layout_toEndOf="@+id/photoListView"
+        android:layout_toEndOf="@+id/addAlbumButton"
         android:text="Search" />
 
     <Button
-        android:id="@+id/deleteButton"
+        android:id="@+id/deleteAlbumButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/albumListView"
         android:layout_marginStart="59dp"
         android:layout_marginTop="15dp"
-        android:layout_toEndOf="@+id/photoListView"
+        android:layout_toEndOf="@+id/addAlbumButton"
         android:text="Delete" />
 
     <Button
-        android:id="@+id/editButton"
+        android:id="@+id/editAlbumButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/albumListView"
         android:layout_marginStart="53dp"
         android:layout_marginLeft="53dp"
         android:layout_marginTop="17dp"
-        android:layout_toEndOf="@+id/deleteButton"
-        android:layout_toRightOf="@id/deleteButton"
+        android:layout_toEndOf="@+id/deleteAlbumButton"
+        android:layout_toRightOf="@id/deleteAlbumButton"
         android:text="Edit" />
 
     <ListView
@@ -56,7 +56,7 @@
         android:layout_marginTop="6dp" />
 
     <Button
-        android:id="@+id/photoListView"
+        android:id="@+id/addAlbumButton"
         android:layout_width="97dp"
         android:layout_height="46dp"
         android:layout_below="@id/albumListView"
