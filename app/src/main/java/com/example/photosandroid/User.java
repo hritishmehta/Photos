@@ -155,7 +155,7 @@ public class User implements Serializable {
             albumList.remove(a);
         }
     }
-    public static void save() throws IOException {
+    public static void save(User u) throws IOException {
         ObjectOutputStream stream = null;
         try{
             stream = new ObjectOutputStream(new FileOutputStream("albums.dat"));
@@ -165,7 +165,7 @@ public class User implements Serializable {
         }
         stream.close();
     }
-    public static void load() throws IOException, ClassNotFoundException, ParseException {
+    public static void load(User u) throws IOException, ClassNotFoundException, ParseException {
         File file = new File("albums.dat");
 
         try{

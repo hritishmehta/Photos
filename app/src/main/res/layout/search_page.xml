@@ -156,7 +156,7 @@
         android:text="MM/DD/YYYY" />
 
     <Button
-        android:id="@+id/searchButton"
+        android:id="@+id/openButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
