@@ -2,6 +2,9 @@ package com.example.photosandroid;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+//import android.widget.AdapterView.OnItemClickListener;
+
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,75 +28,82 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayAdapter<Album> arrayAdapter;
     public static User user;
+    public Object selected;
+    public Album actualSelected;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
-        try {
-            MainActivity.user.load(MainActivity.user);
-        } catch (IOException | ClassNotFoundException | ParseException e) {
-            throw new RuntimeException(e);
-        }
-
-        if(user==null){
-            user = new User("Main");
-        }
-
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        albumListView = findViewById(R.id.albumListView);
-        openButton = findViewById(R.id.openButton);
-        searchButton=findViewById(R.id.openButton);
-        addAlbumButton = findViewById(R.id.addAlbumButton);
-        editAlbumButton = findViewById(R.id.editAlbumButton);
+        searchButton = findViewById(R.id.searchButton2);
         deleteAlbumButton = findViewById(R.id.deleteAlbumButton);
-
-        albumListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        albumListView.setSelection(0);
-        arrayAdapter = new ArrayAdapter<Album>(this,R.layout.activity_main,user.getAllAlbums());
+        addAlbumButton = findViewById(R.id.addAlbumButton);
+        arrayAdapter = new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1);
+        albumListView = findViewById(R.id.albumListView);
         albumListView.setAdapter(arrayAdapter);
+        editAlbumButton = findViewById(R.id.editAlbumButton);
+        addAlbumTextView = findViewById(R.id.addAlbumTextView);
+        editAlbumTextView = findViewById(R.id.editAlbumTextView);
 
 
-        albumListView.setOnItemLongClickListener((parent, view, position, id) -> {
-            Album selectedAlbum = (Album)albumListView.getSelectedItem();
-            return true;
-       });
-
-        addAlbumButton.setOnClickListener(v-> {
-            String albumName = addAlbumTextView.getText().toString();
-            if(albumName.equals(null)){
-                Toast.makeText(getApplicationContext(), "Please type in a album name first", Toast.LENGTH_SHORT).show();
+        albumListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selected = parent.getItemAtPosition(position);
+                albumListView.setSelection(position);
+                actualSelected = (Album) selected;
             }
-            else{
-                Album addition = new Album(albumName);
-                arrayAdapter.add(addition);
-                arrayAdapter.notifyDataSetChanged();
-            }
-            // Set the title and message of the dialog
-//            builder.setTitle("Create New Album");
-//            builder.setMessage("Enter the name of the new album:");
-//
-//            // Set the view of the dialog to be the EditText input view
-//            builder.setView(albumNameInput);
-//            builder.setPositiveButton("Create",new DialogInterface.OnClickListener(){
-//                public void onClick(DialogInterface dialog, int which){
-//                    String albumName = albumNameInput.getText().toString();
-//                    Album addition = new Album(albumName);
-//                    MainActivity.user.addAlbum(addition);
-//                    arrayAdapter.add(addition);
-//                    arrayAdapter.notifyDataSetChanged();
-//                }
-//            });
-//            builder.setNegativeButton("Cancel",new DialogInterface.OnClickListener(){
-//                public void onClick(DialogInterface dialog, int which){
-//                    dialog.cancel();
-//                }
-//            });
-//
-//            AlertDialog alertDialog = builder.create();
-//            alertDialog.show();
 
         });
-    }
 
+        addAlbumTextView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+
+            }
+        });
+
+        addAlbumButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String albumName = addAlbumTextView.getText().toString();
+                if (!albumName.isEmpty()) {
+                    Album addition = new Album(albumName);
+                    arrayAdapter.add(addition);
+                    MainActivity.user.addAlbum(addition);
+                    arrayAdapter.notifyDataSetChanged();
+                }
+            }
+        });
+
+        deleteAlbumButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (actualSelected != null) {
+                    arrayAdapter.remove(actualSelected);
+                    MainActivity.user.deleteAlbum(actualSelected);
+                    arrayAdapter.notifyDataSetChanged();
+                }
+            }
+        });
+
+        editAlbumButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (actualSelected != null) {
+                    String albumName = editAlbumTextView.getText().toString();
+                    actualSelected.setAlbumName(albumName);
+                }
+            }
+        });
+
+        searchButton.setOnClickListener(new View.OnClickListener(){
+           @Override
+           public void onClick(View view){
+
+           }
+        });
+
+    }
 }
 

@@ -57,32 +57,39 @@
 
     <Button
         android:id="@+id/addAlbumButton"
-        android:layout_width="97dp"
-        android:layout_height="46dp"
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="282dp"
-        android:layout_marginBottom="152dp"
-        android:text="Add" />
+        android:layout_marginEnd="276dp"
+        android:layout_marginBottom="150dp"
+        android:text="@string/add" />
 
     <EditText
         android:id="@+id/addAlbumTextView"
         android:layout_width="151dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="121dp"
-        android:layout_marginBottom="168dp"
-        android:text="Enter album name" />
+        android:layout_marginEnd="102dp"
+        android:layout_marginBottom="145dp"
+        android:inputType="text"
+        android:autofillHints=""
+        android:text="@string/enter"
+        tools:ignore="LabelFor" />
 
     <EditText
         android:id="@+id/editAlbumTextView"
         android:layout_width="137dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="129dp"
         android:layout_marginBottom="36dp"
-        android:text="Edit album name" />
+        android:inputType="text"
+        android:autofillHints=""
+        android:text="@string/enter"
+        tools:ignore="LabelFor" />
+
 
 </RelativeLayout>
