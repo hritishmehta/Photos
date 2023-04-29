@@ -1,24 +1,17 @@
 package com.example.photosandroid;
 
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 //import android.widget.AdapterView.OnItemClickListener;
 
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import java.io.IOException;
-import java.text.ParseException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView albumListView;
 
     private ArrayAdapter<Album> arrayAdapter;
-    public static User user;
+    public static User user = new User("Main");
     public Object selected;
     public Album actualSelected;
 
@@ -35,9 +28,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        openButton = findViewById(R.id.searchButton);
         searchButton = findViewById(R.id.searchButton2);
         deleteAlbumButton = findViewById(R.id.deleteAlbumButton);
-        addAlbumButton = findViewById(R.id.addAlbumButton);
+        addAlbumButton = findViewById(R.id.photoListView);
         arrayAdapter = new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1);
         albumListView = findViewById(R.id.albumListView);
         albumListView.setAdapter(arrayAdapter);
@@ -56,12 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        addAlbumTextView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-
-            }
-        });
 
         addAlbumButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,12 +86,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
         searchButton.setOnClickListener(new View.OnClickListener(){
-           @Override
-           public void onClick(View view){
-
-           }
+            @Override
+            public void onClick(View v){
+                Intent change = new Intent(MainActivity.this, searchPageController.class);
+                startActivity(change);
+            }
         });
 
+        openButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent change = new Intent(MainActivity.this, photoController.class);
+                startActivity(change);
+            }
+        });
     }
 }
 

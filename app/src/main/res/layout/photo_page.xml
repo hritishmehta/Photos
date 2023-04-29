@@ -20,7 +20,7 @@
         android:id="@+id/imageView"
         android:layout_width="167dp"
         android:layout_height="148dp"
-        android:layout_below="@id/addAlbumButton"
+        android:layout_below="@id/photoListView"
         android:layout_marginLeft="88dp"
         android:layout_marginTop="54dp"
         android:layout_toRightOf="@id/slideshowButton"
@@ -30,44 +30,44 @@
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addAlbumButton"
-        android:layout_marginTop="52dp"
+        android:layout_below="@id/photoListView"
+        android:layout_marginTop="29dp"
         android:text="Add" />
 
     <Button
         android:id="@+id/slideshowButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addAlbumButton"
-        android:layout_marginTop="306dp"
+        android:layout_below="@id/photoListView"
+        android:layout_marginTop="291dp"
         android:text="Slideshow" />
 
     <Button
         android:id="@+id/moveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addAlbumButton"
-        android:layout_marginTop="242dp"
+        android:layout_below="@id/photoListView"
+        android:layout_marginTop="222dp"
         android:text="Move" />
 
     <Button
         android:id="@+id/deletePButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addAlbumButton"
-        android:layout_marginTop="118dp"
+        android:layout_below="@id/photoListView"
+        android:layout_marginTop="96dp"
         android:text="Delete" />
 
     <Button
         android:id="@+id/tagButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addAlbumButton"
-        android:layout_marginTop="178dp"
+        android:layout_below="@id/photoListView"
+        android:layout_marginTop="156dp"
         android:text="Tag" />
 
     <ListView
-        android:id="@+id/addAlbumButton"
+        android:id="@+id/photoListView"
         android:layout_width="match_parent"
         android:layout_height="296dp"
         android:layout_alignWithParentIfMissing="false"

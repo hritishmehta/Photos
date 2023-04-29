@@ -19,32 +19,13 @@ public class Photo implements Serializable{
      * serialVersionUID for data persistence application
      */
     private static final long serialVersionUID = 1L;
-    /**
-     * String instance that holds caption of the photo
-     */
-    private String caption;
 
-    /**
-     * String instance holding file path of photo
-     */
-    private String filePath;
 
     /**
      * File instance of the image itself
      */
     private File picture;
 
-    /**
-     * Calendar instance
-     */
-    private Calendar calendar;
-    /**
-     * Date instance
-     */
-    private Date date;
-    /**
-     * Arraylist of tags for the photo
-     */
     private ArrayList<Tag> tags;
 
     /**
@@ -52,13 +33,7 @@ public class Photo implements Serializable{
      */
     public Photo() {
         this.picture = null;
-        this.filePath = null;
         this.photoName = null;
-        this.caption = null;
-
-        calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(0);
-        tags = new ArrayList<Tag>();
     }
 
     /**
@@ -69,33 +44,9 @@ public class Photo implements Serializable{
     public Photo(File file, String name){
         this.picture = file;
         this.photoName = name;
-        this.calendar = new GregorianCalendar();
-        calendar.set(Calendar.MILLISECOND, 0);
-        this.date = calendar.getTime();
 
-        this.filePath = picture.getAbsolutePath();
-        this.caption = null;
         tags = new ArrayList<Tag>();
 
-    }
-
-    /**
-     * Constructor
-     * @param filePath
-     * @param name
-     */
-    public Photo(String filePath, String name){
-        File imageFile = new File(filePath);
-        this.picture = imageFile;
-        this.photoName = name;
-        tags = new ArrayList<Tag>();
-
-        calendar = new GregorianCalendar();
-        calendar.set(Calendar.MILLISECOND, 0);
-        this.date = calendar.getTime();
-
-        this.filePath = picture.getAbsolutePath();
-        this.caption = null;
     }
 
     /**
@@ -115,38 +66,6 @@ public class Photo implements Serializable{
     }
 
     /**
-     * Getter method for the caption of photo
-     * @return caption
-     */
-    public String getCaption(){
-        return caption;
-    }
-
-    /**
-     * Setter method for the caption of the photo
-     * @param caption
-     */
-    public void setCaption(String caption) {
-        this.caption = caption;
-    }
-
-    /**
-     * Getter method for the file path of the photo
-     * @return filePath
-     */
-    public String getFilePath(){
-        return filePath;
-    }
-
-    /**
-     * Setter method for the file path of the photo
-     * @param fp
-     */
-    public void setFilePath(String fp){
-        filePath = fp;
-    }
-
-    /**
      * Getter method for the File picture
      * @return picture
      */
@@ -160,22 +79,6 @@ public class Photo implements Serializable{
      */
     public void setPicture(File pic){
         picture = pic;
-    }
-
-    /**
-     * Getter method for the Date instance
-     * @return date
-     */
-    public Date getDate(){
-        return date;
-    }
-
-    /**
-     * Setter method for the Date instance
-     * @param date
-     */
-    public void setDate(Date date){
-        this.date = date;
     }
 
     /**
@@ -278,10 +181,6 @@ public class Photo implements Serializable{
             }
         }
 
-        //caption of both pitures has to be the same
-        if(!this.getCaption().equals(other.getCaption())){
-            return false;
-        }
 
         //actual picture file has to be the same
         if(!this.getPicture().equals(other.getPicture())){
