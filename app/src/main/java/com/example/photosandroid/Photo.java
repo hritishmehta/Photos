@@ -1,7 +1,9 @@
 package com.example.photosandroid;
 
-import java.io.File;
+import android.net.Uri;
+
 import java.io.Serializable;
+import java.net.URI;
 import java.util.*;
 /**
  * @author Hritish Mehta
@@ -15,16 +17,14 @@ public class Photo implements Serializable{
      */
     private String photoName;
 
+    private Uri image;
+
     /**
      * serialVersionUID for data persistence application
      */
     private static final long serialVersionUID = 1L;
 
 
-    /**
-     * File instance of the image itself
-     */
-    private File picture;
 
     private ArrayList<Tag> tags;
 
@@ -32,17 +32,13 @@ public class Photo implements Serializable{
      * Constructor
      */
     public Photo() {
-        this.picture = null;
+        this.image = null;
         this.photoName = null;
     }
 
-    /**
-     * Constructor
-     * @param file
-     * @param name
-     */
-    public Photo(File file, String name){
-        this.picture = file;
+
+    public Photo(Uri uri, String name){
+        this.image = uri;
         this.photoName = name;
 
         tags = new ArrayList<Tag>();
@@ -65,20 +61,12 @@ public class Photo implements Serializable{
         this.photoName = photoName;
     }
 
-    /**
-     * Getter method for the File picture
-     * @return picture
-     */
-    public File getPicture(){
-        return picture;
+    public Uri getImage(){
+        return image;
     }
 
-    /**
-     * Setter method for the picture
-     * @param pic
-     */
-    public void setPicture(File pic){
-        picture = pic;
+    public void setImage(Uri image){
+        this.image = image;
     }
 
     /**
@@ -183,7 +171,7 @@ public class Photo implements Serializable{
 
 
         //actual picture file has to be the same
-        if(!this.getPicture().equals(other.getPicture())){
+        if(!this.getImage().equals(other.getImage())){
             return false;
         }
 

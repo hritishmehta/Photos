@@ -1,5 +1,6 @@
 package com.example.photosandroid;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 //import android.widget.AdapterView.OnItemClickListener;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<Album> arrayAdapter;
     public static User user = new User("Main");
     public Object selected;
-    public Album actualSelected;
+    public Album selectedAlbum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +41,12 @@ public class MainActivity extends AppCompatActivity {
         addAlbumTextView = findViewById(R.id.addAlbumTextView);
         editAlbumTextView = findViewById(R.id.editAlbumTextView);
 
-
         albumListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selected = parent.getItemAtPosition(position);
                 albumListView.setSelection(position);
-                actualSelected = (Album) selected;
+                selectedAlbum = (Album) selected;
             }
 
         });
@@ -56,10 +57,32 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String albumName = addAlbumTextView.getText().toString();
                 if (!albumName.isEmpty()) {
-                    Album addition = new Album(albumName);
-                    arrayAdapter.add(addition);
-                    MainActivity.user.addAlbum(addition);
-                    arrayAdapter.notifyDataSetChanged();
+                    int exists=0;
+                    for(int i=0; i< arrayAdapter.getCount(); i++){
+                        Album temp = arrayAdapter.getItem(i);
+                        if(temp.getAlbumName().equals(albumName)){
+                            exists=1;
+                        }
+                    }
+                    if(exists==0) {
+                        Album addition = new Album(albumName);
+                        arrayAdapter.add(addition);
+                        MainActivity.user.addAlbum(addition);
+                        arrayAdapter.notifyDataSetChanged();
+                    }
+                    else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setTitle("Album already exists")
+                                .setMessage("Please rename your album")
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // User clicked OK button
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+
+                    }
                 }
             }
         });
@@ -67,9 +90,9 @@ public class MainActivity extends AppCompatActivity {
         deleteAlbumButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (actualSelected != null) {
-                    arrayAdapter.remove(actualSelected);
-                    MainActivity.user.deleteAlbum(actualSelected);
+                if (selectedAlbum != null) {
+                    arrayAdapter.remove(selectedAlbum);
+                    MainActivity.user.deleteAlbum(selectedAlbum);
                     arrayAdapter.notifyDataSetChanged();
                 }
             }
@@ -78,9 +101,31 @@ public class MainActivity extends AppCompatActivity {
         editAlbumButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (actualSelected != null) {
+                if (selectedAlbum != null) {
                     String albumName = editAlbumTextView.getText().toString();
-                    actualSelected.setAlbumName(albumName);
+                    int exists=0;
+                    for(int i=0; i< arrayAdapter.getCount(); i++){
+                        Album temp = arrayAdapter.getItem(i);
+                        if(temp.getAlbumName().equals(albumName)){
+                            exists=1;
+                        }
+                    }
+                    if(exists==0) {
+                        selectedAlbum.setAlbumName(albumName);
+                    }
+                    else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setTitle("Album already exists")
+                                .setMessage("Please rename your album")
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // User clicked OK button
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+
+                    }
                 }
             }
         });
@@ -96,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
         openButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                MainActivity.user.setCurrAlbum(selectedAlbum);
                 Intent change = new Intent(MainActivity.this, photoController.class);
                 startActivity(change);
             }

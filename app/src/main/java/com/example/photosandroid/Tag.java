@@ -15,21 +15,15 @@ public class Tag implements Serializable{
     /**
      * String instance of key of tag
      */
-    public String key;
-    /**
-     * String array of values associated with key
-     */
-    public ArrayList<String> values = new ArrayList<String>();
+    public String locationVal;
+    public String personVal;
 
     /**
      * Constructor
      * @param key
      * @param values
      */
-    public Tag(String key, ArrayList<String> values){
-        this.key = key;
-        this.values = values;
-    }
+    public Tag(String lVal, )
 
     /**
      * Getter method for the key attribute

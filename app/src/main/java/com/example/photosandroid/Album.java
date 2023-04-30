@@ -114,48 +114,6 @@ public class Album implements Serializable, Adapter {
     }
 
     /**
-     * Gets the date of the first photo added.
-     * @return dateStr
-     */
-    public String getStartDate() {
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("E, M-d-y 'at' h:m:s a");
-        Date date = null;
-        String dateStr = "No Date";
-        if (!photoArrayList.isEmpty()) {
-            date = this.getPhotoArrayList().get(0).getDate();
-            for (Photo photo: photoArrayList) {
-                if (photo.getDate().before(date)) {
-                    date = photo.getDate();
-                }
-            }
-            dateStr = dateFormatter.format(date);
-        }
-
-        return dateStr;
-    }
-
-    /**
-     * Gets the date of the last photo added in the album
-     * @return dateStr
-     */
-    public String getLastDate() {
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("E, M-d-y 'at' h:m:s a");
-        Date date = null;
-        String dateStr = "No Date";
-        if (!photoArrayList.isEmpty()) {
-            date = this.getPhotoArrayList().get(0).getDate();
-            for (Photo photo: this.getPhotoArrayList()) {
-                if (photo.getDate().after(date)) {
-                    date = photo.getDate();
-                }
-            }
-            dateStr = dateFormatter.format(date);
-        }
-
-        return dateStr;
-    }
-
-    /**
      * Removes a photo from the photo array list
      * @param p
      */
@@ -176,14 +134,7 @@ public class Album implements Serializable, Adapter {
     public String toString(){
         String start="";
         String end= "";
-        if(getStartDate()!=null && getLastDate()!=null){
-            start = getStartDate();
-            end = getLastDate();
-            return "Name: " + albumName + ", " + "Photo Range: " + start + " - " + end + ", Album Size:" + getAlbumSize();
-        }
-        else{
-            return "Name: " + albumName + ", " + "Photo Range: " + "" + "Album Size: " + getAlbumSize();
-        }
+        return "Name: " + albumName + " Size:" + getAlbumSize();
 
 
     }
