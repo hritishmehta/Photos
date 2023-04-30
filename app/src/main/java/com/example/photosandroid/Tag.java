@@ -1,6 +1,7 @@
 package com.example.photosandroid;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.*;
 /**
  * @author Hritish Mehta
@@ -15,46 +16,31 @@ public class Tag implements Serializable{
     /**
      * String instance of key of tag
      */
-    public String locationVal;
-    public String personVal;
-
+    public ArrayList<String> lVals = new ArrayList<String>();
     /**
-     * Constructor
-     * @param key
-     * @param values
+     * String array of values associated with key
      */
-    public Tag(String lVal, )
+    public ArrayList<String> pVals = new ArrayList<String>();
 
-    /**
-     * Getter method for the key attribute
-     * @return key
-     */
-    public String getKey(){
-        return key;
+    public Tag(ArrayList<String> lVals, ArrayList<String> pVals){
+        this.lVals = lVals;
+        this.pVals = pVals;
     }
 
-    /**
-     * Getter method for the string array of values
-     * @return
-     */
-    public ArrayList<String> getValues(){
-        return values;
+    public ArrayList<String> getLVals(){
+        return lVals;
     }
 
-    /**
-     * Setter method for key
-     * @param key
-     */
-    public void setKey(String key){
-        this.key = key;
+    public ArrayList<String> getPVals(){
+        return pVals;
     }
 
-    /**
-     * Setter method for String array of values
-     * @param values
-     */
-    public void setValues(ArrayList<String> values){
-        this.values = values;
+    public void setLVals(ArrayList<String> lVals){
+        this.lVals = lVals;
+    }
+
+    public void setPVals(ArrayList<String> pVals){
+        this.pVals = pVals;
     }
 
     /**
@@ -71,12 +57,14 @@ public class Tag implements Serializable{
 
         Tag other = (Tag) obj;
 
-        if(!(other.getKey()).equals(this.key)){
-            return false;
-        }
-        for(String s: values){
-            if(!other.getValues().contains(s)){
+        for(String s: lVals){
+            if(!other.getLVals().contains(s)){
                 return false;
+            }
+        for(String x: pVals){
+                if(!other.getPVals().contains(x)){
+                    return false;
+                }
             }
         }
         return true;
@@ -88,9 +76,14 @@ public class Tag implements Serializable{
      */
     public String toString(){
         String result = "";
-        result += "Key: " + this.key + " Values: ";
-        for(String s: values){
+        result += "Location: ";
+        for(String s: lVals){
             result += s + ", ";
+        }
+
+        result += "\nPerson: ";
+        for(String p: pVals){
+            result += p + ", ";
         }
         return result;
     }

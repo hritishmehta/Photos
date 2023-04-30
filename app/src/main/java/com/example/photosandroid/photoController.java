@@ -1,7 +1,9 @@
 package com.example.photosandroid;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -14,12 +16,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ListView;
 import android.widget.TextView;
 //import android.widget.AdapterView.OnItemClickListener;
 
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class photoController extends AppCompatActivity {
@@ -77,35 +83,45 @@ public class photoController extends AppCompatActivity {
         tagButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create a new dialog
-                final Dialog dialog = new Dialog(MainActivity.this);
-                dialog.setContentView(R.layout.tag_dialog);
+                // Inflate the custom layout
+                View customView = getLayoutInflater().inflate(R.layout.tag_dialog, null);
 
-                dialog.setTitle("Enter Location and Person");
+                AlertDialog.Builder builder = new AlertDialog.Builder(photoController.this);
+                builder.setView(customView);
 
-                EditText locationEditText = dialog.findViewById(R.id.location_edittext);
-                EditText personEditText = dialog.findViewById(R.id.person_edittext);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
 
-                TextView locationTextView = dialog.findViewById(R.id.location_textview);
-                TextView personTextView = dialog.findViewById(R.id.person_textview);
+                TextView locationTextView = findViewById(R.id.location_textview);
+                TextView personTextView = findViewById(R.id.person_textview);
 
-                locationTextView.setText("Location: ");
-                personTextView.setText("Person: ");
-
-                Button closeBtn = dialog.findViewById(R.id.close_button);
-                closeBtn.setOnClickListener(new View.OnClickListener() {
+                EditText locationEditText = findViewById(R.id.location_edittext);
+                EditText personEditText = findViewById(R.id.person_edittext);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
+                    public void onClick(DialogInterface dialog, int which) {
+                        String[] lValsString = locationEditText.getText().toString().split(",");
+                        ArrayList<String> lVals = new ArrayList<>();
+                        Collections.addAll(lVals, lValsString);
+
+                        String[] pValsString = personEditText.getText().toString().split(",");
+                        ArrayList<String> pVals = new ArrayList<>();
+                        Collections.addAll(pVals, pValsString);
+
+                        selected.addTag(new Tag(lVals, pVals));
+                        // Do something with the location and person input
                     }
                 });
 
-                dialog.show();
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
-
-
-    }
+        }
 
 
 

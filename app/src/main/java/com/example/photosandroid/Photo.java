@@ -179,24 +179,6 @@ public class Photo implements Serializable{
         return true;
     }
 
-    /**
-     * toString implementation for tag
-     * @return
-     */
-    public String tagToString(){
-        if(!this.getTags().isEmpty()){
-            String result = "";
-            for(Tag t: this.getTags()){
-                result += "Key: " + t.getKey() + " Values: ";
-                for(String value: t.getValues()){
-                    result +=  value + ", ";
-                }
-                result += "\n";
-            }
-            return result;
-        }
-        return "";
-    }
 
 
 
