@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 
 public class searchPageController extends AppCompatActivity {
@@ -74,6 +75,24 @@ public class searchPageController extends AppCompatActivity {
                 personValues.add(s);
             }
         }
+
+        HashSet<String> setWithoutDuplicates = new HashSet<>();
+        for (String element : locationValues) {
+            setWithoutDuplicates.add(element.toLowerCase());
+        }
+
+        locationValues.clear();
+        locationValues.addAll(setWithoutDuplicates);
+
+        HashSet<String> setWithoutDuplicates2 = new HashSet<>();
+        for (String element : personValues) {
+            setWithoutDuplicates2.add(element.toLowerCase());
+        }
+
+        personValues.clear();
+        personValues.addAll(setWithoutDuplicates);
+
+
         autoCompleteAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, locationValues);
         tag1Autocomplete.setAdapter(autoCompleteAdapter);
         tag1Autocomplete.setThreshold(1);
