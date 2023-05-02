@@ -88,24 +88,51 @@
         android:layout_marginBottom="295dp"
         android:text="Search" />
 
-    <RadioButton
-        android:id="@+id/orButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="242dp"
-        android:layout_marginBottom="184dp"
-        android:text="OR" />
+<!--    <RadioButton-->
+<!--        android:id="@+id/orButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginEnd="242dp"-->
+<!--        android:layout_marginBottom="184dp"-->
+<!--        android:text="OR" />-->
 
-    <RadioButton
-        android:id="@+id/andButton"
-        android:layout_width="wrap_content"
+<!--    <RadioButton-->
+<!--        android:id="@+id/andButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginEnd="103dp"-->
+<!--        android:layout_marginBottom="184dp"-->
+<!--        android:text="AND" />-->
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="192dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="103dp"
-        android:layout_marginBottom="184dp"
-        android:text="AND" />
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="189dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/orButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Or" />
+
+        <RadioButton
+            android:id="@+id/andButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="And" />
+
+    </RadioGroup>
+
 
 </RelativeLayout>

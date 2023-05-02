@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         addAlbumButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String albumName = addAlbumTextView.getText().toString();
+                String albumName = addAlbumTextView.getText().toString().trim();
                 if (!albumName.isEmpty()) {
                     int exists=0;
                     for(int i=0; i< arrayAdapter.getCount(); i++){
