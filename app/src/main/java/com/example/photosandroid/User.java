@@ -1,7 +1,10 @@
 package com.example.photosandroid;
 
+import android.content.Context;
+
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -19,6 +22,7 @@ public class User implements Serializable {
     /**
      * serialVersionUID for data persistence application
      */
+
     private static final long serialVersionUID = 1L;
     /**
      * String instance of the username
@@ -27,7 +31,7 @@ public class User implements Serializable {
     /**
      * Arraylist of albums of the user
      */
-    private ArrayList<Album> albumList;
+    public ArrayList<Album> albumList;
 
     /**
      * Album instance of the current album of the user
@@ -155,26 +159,31 @@ public class User implements Serializable {
             albumList.remove(a);
         }
     }
-    public static void save(User u) throws IOException {
-        ObjectOutputStream stream = null;
-        try{
-            stream = new ObjectOutputStream(new FileOutputStream("albums.dat"));
-            stream.writeObject(MainActivity.user);
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-        stream.close();
-    }
-    public static void load(User u) throws IOException, ClassNotFoundException, ParseException {
-        File file = new File("albums.dat");
-
-        try{
-            ObjectInputStream inp = new ObjectInputStream(new FileInputStream("albums.dat"));
-            MainActivity.user = (User) inp.readObject();
-            inp.close();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
+//    public static User save(Context context) throws IOException {
+//        User u = null;
+//        try {
+//            FileInputStream fis = context.openFileInput("albums.dat");
+//            ObjectInputStream ois = new ObjectInputStream(fis);
+//            u = (User) ois.readObject();
+//
+//            fis.close();
+//            ois.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return u;
+//    }
+//    public void load(Context context){
+//        ObjectOutputStream oos;
+//        try {
+//            FileOutputStream fileOutputStream = context.openFileOutput("albums.dat", Context.MODE_PRIVATE);
+//            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+//            objectOutputStream.writeObject(this);
+//            objectOutputStream.close();
+//            fileOutputStream.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 }

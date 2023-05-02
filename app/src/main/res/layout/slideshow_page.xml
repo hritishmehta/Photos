@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/slideshowImageView"
         android:layout_width="263dp"
         android:layout_height="291dp"
         android:layout_alignParentEnd="true"
@@ -25,7 +25,7 @@
         android:text="Previous" />
 
     <Button
-        android:id="@+id/backButton"
+        android:id="@+id/slideshowBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

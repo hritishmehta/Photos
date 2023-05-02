@@ -17,7 +17,9 @@ public class Photo implements Serializable{
      */
     private String photoName;
 
-    private Uri image;
+    private String image;
+
+    private Tag tag;
 
     /**
      * serialVersionUID for data persistence application
@@ -26,7 +28,6 @@ public class Photo implements Serializable{
 
 
 
-    private ArrayList<Tag> tags;
 
     /**
      * Constructor
@@ -34,15 +35,14 @@ public class Photo implements Serializable{
     public Photo() {
         this.image = null;
         this.photoName = null;
+        this.tag = new Tag(new ArrayList<String>(),new ArrayList<String>());
     }
 
 
     public Photo(Uri uri, String name){
-        this.image = uri;
+        this.image = uri.toString();
         this.photoName = name;
-
-        tags = new ArrayList<Tag>();
-
+        this.tag = new Tag(new ArrayList<String>(),new ArrayList<String>());
     }
 
     /**
@@ -62,80 +62,19 @@ public class Photo implements Serializable{
     }
 
     public Uri getImage(){
-        return image;
+        return Uri.parse(image);
     }
 
     public void setImage(Uri image){
-        this.image = image;
+        this.image = image.toString();
     }
 
     /**
      * Getter method for the tag list
      * @return tags
      */
-    public ArrayList<Tag> getTags(){
-        return tags;
-    }
-
-
-    /**
-     * Adds a tag to the tag list
-     * @param tagAddition
-     */
-    public void addTag(Tag tagAddition){
-        if(!areTagsSame(tagAddition)){
-            tags.add(tagAddition);
-        }
-    }
-
-    /**
-     * Removes the tag from a tag list
-     * @param tagRemove
-     */
-    public void removeTag(Tag tagRemove){
-        for(Tag t: this.getTags()){
-            if(t.equals(tagRemove)){
-                tags.remove(tagRemove);
-            }
-        }
-    }
-
-    /**
-     * Checks if two tags are the same
-     * @param tagAddition
-     * @return boolean
-     */
-    public boolean areTagsSame(Tag tagAddition){
-        for(Tag tag: tags){
-            if(tag.equals(tagAddition)){
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    /**
-     * Deletes a tag from tag list
-     * @param t
-     */
-    public void deleteTag(Tag t){
-        tags.remove(t);
-    }
-
-    /**
-     * Checks to see if a tag already exists or not
-     * @param t
-     * @param temp
-     * @return
-     */
-    public boolean tagExists(Tag t, Photo temp){
-        for(Tag tempTag: temp.getTags()){
-            if(t.equals(tempTag)){
-                return true;
-            }
-        }
-        return false;
+    public Tag getTag(){
+        return tag;
     }
 
     /**
@@ -158,18 +97,16 @@ public class Photo implements Serializable{
         //for each tag in other, check if it exists in this
         //for each tag in this check if it exists in other
         //basically: if a is a subset of b and b is a subset of a, a==b
-        for(Tag t: tags){
-            if(!tagExists(t, other)){
+        for(String s: tag.getLVals()){
+            if(!other.getTag().getLVals().contains(s)){
                 return false;
             }
         }
-        for(Tag t: other.getTags()){
-            if(!tagExists(t, this)){
+        for(String s: tag.getPVals()){
+            if(!other.getTag().getPVals().contains(s)){
                 return false;
             }
         }
-
-
         //actual picture file has to be the same
         if(!this.getImage().equals(other.getImage())){
             return false;

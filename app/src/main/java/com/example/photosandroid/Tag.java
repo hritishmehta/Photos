@@ -23,6 +23,8 @@ public class Tag implements Serializable{
     public ArrayList<String> pVals = new ArrayList<String>();
 
     public Tag(ArrayList<String> lVals, ArrayList<String> pVals){
+        this.lVals.add(0,"");
+        this.pVals.add(0,"");
         this.lVals = lVals;
         this.pVals = pVals;
     }
@@ -43,6 +45,21 @@ public class Tag implements Serializable{
         this.pVals = pVals;
     }
 
+    public void addLocation(String s){
+        lVals.add(s);
+    }
+
+    public void addPerson(String s){
+        pVals.add(s);
+    }
+
+    public void removeLocation(String s){
+        lVals.remove(s);
+    }
+
+    public void removePerson(String s){
+        pVals.remove(s);
+    }
     /**
      * Equals method implementation overriding object equals
      * @param obj

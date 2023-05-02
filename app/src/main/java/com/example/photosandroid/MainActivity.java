@@ -9,11 +9,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 //import android.widget.AdapterView.OnItemClickListener;
 
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.IOException;
+import java.text.ParseException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,16 +34,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DataPersistence data = new DataPersistence(MainActivity.this);
+        data.read();
+
         openButton = findViewById(R.id.searchButton);
         searchButton = findViewById(R.id.searchButton2);
         deleteAlbumButton = findViewById(R.id.deleteAlbumButton);
         addAlbumButton = findViewById(R.id.photoListView);
-        arrayAdapter = new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1);
+        arrayAdapter = new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1,MainActivity.user.getAllAlbums());
         albumListView = findViewById(R.id.albumListView);
         albumListView.setAdapter(arrayAdapter);
         editAlbumButton = findViewById(R.id.editAlbumButton);
         addAlbumTextView = findViewById(R.id.addAlbumTextView);
         editAlbumTextView = findViewById(R.id.editAlbumTextView);
+
+        if(!arrayAdapter.isEmpty()){
+            selectedAlbum = arrayAdapter.getItem(0);
+        }
 
         albumListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -66,8 +77,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if(exists==0) {
                         Album addition = new Album(albumName);
-                        arrayAdapter.add(addition);
                         MainActivity.user.addAlbum(addition);
+                        try {
+                            data.write();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                         arrayAdapter.notifyDataSetChanged();
                     }
                     else{
@@ -93,6 +108,11 @@ public class MainActivity extends AppCompatActivity {
                 if (selectedAlbum != null) {
                     arrayAdapter.remove(selectedAlbum);
                     MainActivity.user.deleteAlbum(selectedAlbum);
+                    try {
+                        data.write();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                     arrayAdapter.notifyDataSetChanged();
                 }
             }
@@ -112,6 +132,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if(exists==0) {
                         selectedAlbum.setAlbumName(albumName);
+                        try {
+                            data.write();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                     else{
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -141,9 +166,14 @@ public class MainActivity extends AppCompatActivity {
         openButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                MainActivity.user.setCurrAlbum(selectedAlbum);
-                Intent change = new Intent(MainActivity.this, photoController.class);
-                startActivity(change);
+                if(arrayAdapter.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Please create an album first", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    MainActivity.user.setCurrAlbum(selectedAlbum);
+                    Intent change = new Intent(MainActivity.this, photoController.class);
+                    startActivity(change);
+                }
             }
         });
     }

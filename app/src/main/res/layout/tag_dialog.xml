@@ -14,8 +14,8 @@
 
     <EditText
         android:id="@+id/location_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="378dp"
+        android:layout_height="64dp"
         android:hint="Enter location here" />
 
     <TextView
@@ -27,12 +27,18 @@
 
     <EditText
         android:id="@+id/person_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="375dp"
+        android:layout_height="69dp"
         android:hint="Enter person here" />
 
     <Button
-        android:id="@+id/close_button"
+        android:id="@+id/confirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm" />
+
+    <Button
+        android:id="@+id/closeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Close" />

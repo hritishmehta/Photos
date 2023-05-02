@@ -4,33 +4,89 @@
     android:layout_height="match_parent">
 
     <Button
+        android:id="@+id/backSearchButton"
+        android:layout_width="122dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="281dp"
+        android:layout_marginBottom="10dp"
+        android:text="Back" />
+
+    <ListView
+        android:id="@+id/resultListView"
+        android:layout_width="match_parent"
+        android:layout_height="247dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="355dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="381dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="608dp"
+        android:text="Resulting search images:"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="278dp"
+        android:layout_marginBottom="244dp"
+        android:text="Location"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="74dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="273dp"
+        android:layout_marginBottom="137dp"
+        android:text="Person"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <AutoCompleteTextView
+        android:id="@+id/tag2Autocomplete"
+        android:layout_width="156dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="131dp"
+        android:text="tag2Value" />
+
+    <AutoCompleteTextView
+        android:id="@+id/tag1Autocomplete"
+        android:layout_width="149dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="238dp"
+        android:text="tag1Value" />
+
+    <Button
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="278dp"
+        android:layout_marginBottom="295dp"
         android:text="Search" />
-
-    <Button
-        android:id="@+id/backSearchButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="141dp"
-        android:layout_marginBottom="12dp"
-        android:text="Back" />
-
-    <ListView
-        android:id="@+id/resultListView"
-        android:layout_width="wrap_content"
-        android:layout_height="263dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="156dp" />
 
     <RadioButton
         android:id="@+id/orButton"
@@ -38,8 +94,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="251dp"
-        android:layout_marginBottom="506dp"
+        android:layout_marginEnd="242dp"
+        android:layout_marginBottom="184dp"
         android:text="OR" />
 
     <RadioButton
@@ -48,64 +104,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="106dp"
-        android:layout_marginBottom="506dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginBottom="184dp"
         android:text="AND" />
-
-    <EditText
-        android:id="@+id/tag1Value"
-        android:layout_width="128dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="574dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Tag1 value" />
-
-    <EditText
-        android:id="@+id/tag2Value"
-        android:layout_width="128dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="47dp"
-        android:layout_marginBottom="441dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Tag2 value" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="112dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="191dp"
-        android:layout_marginBottom="452dp"
-        android:text="Person: "
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="88dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="224dp"
-        android:layout_marginBottom="585dp"
-        android:text="Location: "
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="179dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="205dp"
-        android:layout_marginBottom="99dp"
-        android:text="Create New Album" />
 
 </RelativeLayout>
